@@ -94,17 +94,34 @@ function handleTouchMove(evt) {
 
     if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
         if ( xDiff > 0 ) {
+          if(game.playing){
             game.changeDirection("W");
+          }else{
+            game = new Snake(50);
+          }
         } else {
+          if(game.playing){
           game.changeDirection("E");
+        }else{
+          game = new Snake(50);
+        }
 
         }
     } else {
         if ( yDiff > 0 ) {
+        if(game.playing){
           game.changeDirection("N");
+        }else{
+          game = new Snake(50);
+        }
 
         } else {
-            game.changeDirection("S");
+            if(game.playing){
+              game.changeDirection("S");
+            }else{
+              game = new Snake(50);
+            }
+
 
         }
     }
