@@ -6,9 +6,9 @@ window.onload = function() {
   ctx = canvas.getContext("2d");
   document.addEventListener("keydown", keyDownEvent);
   // render X times per second
-  var x = 12;
-  setInterval(draw, 1000 / x);
-
+  speed = 10;
+  game.playing = false;
+  setInterval(draw, 1000 / speed);
 };
 
 function draw(){
@@ -36,11 +36,17 @@ function draw(){
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.fillStyle = "red";
-    ctx.font = "30px Comic Sans MS";
+    ctx.font = "50px Comic Sans MS";
     ctx.textAlign = "center";
-    ctx.fillText("Game Over", canvas.width/2, (canvas.height/2) - 50);
+    ctx.fillText("Snake", canvas.width/2, (canvas.height/2) - 50);
+    ctx.font = "20px Comic Sans MS";
+
+    if(game.score > 0){
     ctx.fillText("Score: " + game.score, canvas.width/2, (canvas.height/2));
-    ctx.fillText("Press space or swipe to try again", canvas.width/2, (canvas.height/2) + 50);
+  }else{
+    ctx.fillText("Press or swipe up/down/left/right to move", canvas.width/2, (canvas.height/2));
+  }
+    ctx.fillText("Press space or swipe to start", canvas.width/2, (canvas.height/2) + 50);
   }
 }
 

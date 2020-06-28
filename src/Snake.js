@@ -1,5 +1,7 @@
 function Snake(size) {
   this.size = size;
+  this.wall = [];
+
   this.snake = [this.newSnake((size * size / 2 ), "black", "E")];
   this.playing = true;
   this.populateBoard();
@@ -8,11 +10,15 @@ function Snake(size) {
 }
 
 Snake.prototype.frame = function() {
+  self = this;
     if (this.playing) {
       this.progressSnake()
       if(this.snake[0].position == this.fruitPosition){
         this.addTail();
         this.score += 10;
+        if(this.score % 30 == 0){
+          this.addWall();
+        }
         this.addFruit();
       }
       this.populateBoard()
@@ -65,6 +71,10 @@ Snake.prototype.nextPosition = function(position, direction){
 Snake.prototype.populateBoard = function(){
   var board = new Array(this.size * this.size);
   board[this.fruitPosition] = "green"
+  console.log(this.wall)
+  this.wall.forEach(function(wall){
+    board[wall] = "black"
+  })
   this.snake.forEach(function(snake){
     board[snake.position] = snake.marker;
   });
@@ -126,7 +136,16 @@ Snake.prototype.addFruit = function(pos) {
     }
   }
   this.fruitPosition = pos;
+}
 
+Snake.prototype.addWall = function() {
+  self = this;
+  var pos = Math.floor(Math.random() * self.board.length)
+  while (this.board[pos] == "black" || (pos % self.size == 0)) {
+    pos = Math.floor(Math.random() * self.board.length);
+  }
+
+  this.wall.push(pos);
 }
 
 Snake.prototype.grid = function(){
