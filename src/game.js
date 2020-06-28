@@ -6,7 +6,7 @@ window.onload = function() {
   ctx = canvas.getContext("2d");
   document.addEventListener("keydown", keyDownEvent);
   // render X times per second
-  var x = 16;
+  var x = 12;
   setInterval(draw, 1000 / x);
 
 };
@@ -40,7 +40,7 @@ function draw(){
     ctx.textAlign = "center";
     ctx.fillText("Game Over", canvas.width/2, (canvas.height/2) - 50);
     ctx.fillText("Score: " + game.score, canvas.width/2, (canvas.height/2));
-    ctx.fillText("Press space to try again", canvas.width/2, (canvas.height/2) + 50);
+    ctx.fillText("Press space or swipe to try again", canvas.width/2, (canvas.height/2) + 50);
   }
 }
 
