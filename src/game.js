@@ -6,16 +6,19 @@ window.onload = function() {
   ctx = canvas.getContext("2d");
   document.addEventListener("keydown", keyDownEvent);
   // render X times per second
-  speed = 10;
+  var speed = 11;
   game.playing = false;
   setInterval(draw, 1000 / speed);
 };
+
+
 
 function draw(){
   ctx.fillStyle = "pink";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "black";
   game.frame()
+
 
   game.grid().forEach(function(row){
     if(row.value === undefined){

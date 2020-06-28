@@ -71,7 +71,6 @@ Snake.prototype.nextPosition = function(position, direction){
 Snake.prototype.populateBoard = function(){
   var board = new Array(this.size * this.size);
   board[this.fruitPosition] = "green"
-  console.log(this.wall)
   this.wall.forEach(function(wall){
     board[wall] = "black"
   })
